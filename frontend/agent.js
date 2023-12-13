@@ -1,8 +1,6 @@
-// Importa las bibliotecas necesarias.
 import axios from "axios";
-import Cookies from "js-cookie";
 
-axios.defaults.baseURL = "http://localhost:5108/api";
+axios.defaults.baseURL = "http://localhost:3000";
 axios.defaults.withCredentials = true;
 
 const responseBody = (response) => response.data;
@@ -15,10 +13,11 @@ const requests = {
 };
 
 const Backend = {
-  posts: () => requests.post("/posts"),
-
+  posts: () => requests.get("/posts"),
+  comments: (id) => requests.get("/post/"+id+"/comments"),
+  delete: (id) => requests.delete("/posts/"+id),
 };
 
-const agent = { Auth, User };
+const agent = { Backend };
 
 export default agent;
